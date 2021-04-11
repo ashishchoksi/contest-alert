@@ -1,0 +1,16 @@
+ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.top-nav {
+	background-color: #000;
+	color: #fff;
+	padding: 20px;
+}
+
+.left-side > li{
+	display: inline;
+	margin: 0 20px;
+}

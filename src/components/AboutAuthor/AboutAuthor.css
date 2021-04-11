@@ -1,0 +1,9 @@
+.main-tx {
+    /* height: 250px; */
+    background: #eee;
+    padding: 20px;
+}
+
+.round {
+    border-radius: 50%;
+}

@@ -1,0 +1,7 @@
+.main {
+    /* height: 350px; */
+}
+
+.main > div {
+    padding: 20px;
+}

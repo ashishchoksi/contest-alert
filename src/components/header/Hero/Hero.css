@@ -1,0 +1,20 @@
+.main-area {
+    background: url('../../../assets/images/nav-img.jpg');
+    height: 500px;
+    /* width: 100%; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.img-text {
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    position: absolute;
+    top:40%;
+    left : 50%;
+    transform: translateX(-50%);
+    font-size: 55px;    
+}
