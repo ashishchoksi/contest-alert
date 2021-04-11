@@ -12,7 +12,7 @@ function AboutAuthor() {
             <div className="container-fluid row">
 
                 <div className="col-md-12 text-center col-lg-4 col-sm-12">
-                    <img src={image} height="250px" className="round" />
+                    <img src={image} height="250px" alt="" className="round" />
                 </div>
 
                 <div className="col-md-12 mt-4 col-lg-8 col-sm-8">
@@ -21,11 +21,11 @@ function AboutAuthor() {
 
                     <div className="connect">
                         <span className="lead"> <b> Connect Me on : </b> </span>
-                        <a href="https://www.linkedin.com/in/ashish-choksi-9b2b6815b/" target="_blank"><img src={li} /> </a> &nbsp; &nbsp;
+                        <a rel="noreferrer" href="https://www.linkedin.com/in/ashish-choksi-9b2b6815b/" target="_blank"><img src={li} alt="Linkedin" /> </a> &nbsp; &nbsp;
 
-                        <a href="https://github.com/ashishchoksi" target="_blank"><img src={gh} /> </a> &nbsp; &nbsp;
+                        <a rel="noreferrer" href="https://github.com/ashishchoksi" target="_blank"><img src={gh} alt="github" /> </a> &nbsp; &nbsp;
 
-                        <a href="https://mr-ashish.netlify.app/" target="_blank"><img src={web} /> </a>
+                        <a rel="noreferrer" href="https://mr-ashish.netlify.app/" target="_blank"><img src={web} alt="website" /> </a>
                     </div>
 
                 </div>

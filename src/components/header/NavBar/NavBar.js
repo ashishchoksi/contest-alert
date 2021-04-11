@@ -1,6 +1,6 @@
 import React from 'react';
 import './NavBar.css';
-import logo from './logo.png';
+import { Link } from "react-router-dom";
 
 function NavBar() {
     return (
@@ -9,8 +9,8 @@ function NavBar() {
             <div className="fixed">
                 <div className="row top-nav">
                     <ul className="col-md-8 left-side col-sm-12">
-                        <li> Contest-Alert </li>
-                        <li>Upcomming Contest</li>
+                        <li> <Link to="/" className="link"> Contest-Alert </Link> </li>
+                        <li> <Link to="/upcoming-contest" className="link"> Upcomming Contest </Link></li>
                     </ul>
                     <ul className="col-md-4 text-right left-side col-sm-12">
                         <li>Login</li>

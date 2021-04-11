@@ -4,11 +4,11 @@ ul {
 	list-style: none;
 }
 
-.fixed {
+/* .fixed {
 	width: 100%;
 	position: fixed;
 	z-index: 999;
-}
+} */
 
 .top-nav {
 	background-color: #000;
@@ -19,4 +19,15 @@ ul {
 .left-side > li{
 	display: inline;
 	margin: 0 20px;
+}
+
+.link {
+	text-decoration: none;
+	color: #fff;
+	
+}
+
+.link:hover {
+	text-decoration: none;
+	color:rgb(216, 212, 212);
 }

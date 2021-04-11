@@ -7,7 +7,7 @@ function AboutUs() {
         <div className="main">
             <div className="container-fluid row">
                 <div className="col-lg-4 text-center col-md-12 col-sm-12">
-                    <img src={image} width="350px" height="300px" />
+                    <img alt="" src={image} width="350px" height="300px" />
                 </div>
 
                 <div className="col-lg-8 col-md-12 mt-5 col-sm-12">

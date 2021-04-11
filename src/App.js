@@ -1,18 +1,27 @@
 import './App.css';
 import NavBar from './components/header/NavBar/NavBar';
-import Hero from './components/header/Hero/Hero';
-import AboutUs from './components/AboutUs/AboutUs';
-import AboutAuthor from './components/AboutAuthor/AboutAuthor';
 import Footer from './components/Footer/Footer';
+import Home from './components/Home/Home';
+import AllContest from './components/AllContest/AllContest';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="">
-      <NavBar />
-      <Hero />
-      <AboutUs />
-      <AboutAuthor />
-      <Footer />
+      <BrowserRouter>
+        <NavBar />
+
+        <Switch>
+          <Route path="/upcoming-contest">
+            <AllContest />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
