@@ -1,6 +1,7 @@
 
 .table-holder {
     padding: 20px;
+    min-height: 600px;
 }
 
 .option-holder {
