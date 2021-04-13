@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './AllContest.css';
 import axios from 'axios';
 import Spinner from '../Spinner/Spinner';
+import Table from '../Table/Table';
 
 class AllContest extends Component {
 
@@ -47,36 +48,10 @@ class AllContest extends Component {
     render() {
 
         let index = 0;
-        let Table = <Spinner />;
+        let table = <Spinner />;
         let TableOption = null;
         if (this.state.all_contest.length > 0) {
-            Table = (<table class="table table-striped border">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Contest</th>
-                        <th scope="col">Start Time</th>
-                        <th scope="col">End Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        this.state.all_contest.map(data => {
-                            return (
-                                <tr key={index}>
-                                    <th scope="row">{++index}</th>
-
-                                    <td> <span title={data.status === "CODING" ? "contest running" : "contest not started yet"} className={data.status === "CODING" ? "green" : "orange"}>......</span> <a rel="noreferrer" href={data.url} target="_blank">{data.name}</a> ({data.site})</td>
-
-                                    <td>{data.start_time.substr(0, 10)} at {data.start_time.substr(11, 5)}</td>
-
-                                    <td>{data.end_time.substr(0, 10)} at {data.end_time.substr(11, 5)}</td>
-                                </tr>
-                            )
-                        })
-                    }
-                </tbody>
-            </table>)
+            table = <Table all_contest={this.state.all_contest} />;
 
             TableOption = (
                 <div className="option-holder">
@@ -94,7 +69,7 @@ class AllContest extends Component {
         return (
             <div className="table-holder">
                 {TableOption}
-                {Table}
+                {table}
             </div>
         )
     }
