@@ -12,12 +12,14 @@ function AboutAuthor() {
             <div className="container-fluid row">
 
                 <div className="col-md-12 text-center col-lg-4 col-sm-12">
-                    <img src={image} height="250px" alt="" className="round" />
+                    <img src={image} height="250px" width="250px" alt="" className="round" />
                 </div>
 
-                <div className="col-md-12 mt-4 col-lg-8 col-sm-8">
+                <div className="col-md-12 col-lg-8 col-sm-8">
                     <h2 className="display-5"> About Developer </h2>
-                    <p className="lead text-justify"> Hello everyone, I am Ashish. I was a student of DA-IICT and currently Analyst at Goldman Sachs. I love participating in contest but sometimes miss that or not aware of. so, I came with this solution and now publishing it. </p>
+                    <p className="lead"> Hello everyone, I am Ashish.</p>
+                    <p className="lead">I was a student of DA-IICT and currently Analyst at Goldman Sachs.</p>
+                    <p className="lead">This platform helps you to be aware of competitive coding contests.</p>
 
                     <div className="connect">
                         <span className="lead"> <b> Connect Me on : </b> </span>
