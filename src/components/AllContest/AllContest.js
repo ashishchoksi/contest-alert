@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './AllContest.css';
 import axios from 'axios';
+import Spinner from '../Spinner/Spinner';
 
 class AllContest extends Component {
 
@@ -46,11 +47,10 @@ class AllContest extends Component {
     render() {
 
         let index = 0;
-        let Table = (
-            <p className="text-center lead"> Loading... </p>
-        );
+        let Table = <Spinner />;
+        let TableOption = null;
         if (this.state.all_contest.length > 0) {
-            Table = <table class="table table-striped border">
+            Table = (<table class="table table-striped border">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -76,11 +76,9 @@ class AllContest extends Component {
                         })
                     }
                 </tbody>
-            </table>
-        }
+            </table>)
 
-        return (
-            <div className="table-holder">
+            TableOption = (
                 <div className="option-holder">
                     <div onClick={this.onOptionClickHandler} className={(this.state.activeOption === "All" ? "option active" : "option")}> All </div>
 
@@ -90,6 +88,12 @@ class AllContest extends Component {
 
                     <div onClick={this.onOptionClickHandler} className={(this.state.activeOption === "Kick Start" ? "option active" : "option")}> Kick Start </div>
                 </div>
+            )
+        }
+
+        return (
+            <div className="table-holder">
+                {TableOption}
                 {Table}
             </div>
         )
