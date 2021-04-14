@@ -3,6 +3,21 @@ import React, { Component } from 'react';
 function Table(props) {
 
     let index = 0;
+    let calender = (
+        <a target="_blank" href="https://calendar.google.com/event?action=TEMPLATE&dates=20210415T120000000Z/20210415T140000000Z&text=Code-MAT&location=https://www.codechef.com/CDMT2021?itm_campaign=contest_listing">Li</a>
+    );
+
+    function validateDateForUrl(str) {
+        let s = "";
+        for (let c of str) {
+            if (c === '-' || c === ':' || c === '.')
+                continue;
+            else
+                s += c;
+        }
+        return s;
+    }
+
 
     return (
 
@@ -22,7 +37,15 @@ function Table(props) {
                             <tr key={index}>
                                 <th scope="row">{++index}</th>
 
-                                <td> <span title={data.status === "CODING" ? "contest running" : "contest not started yet"} className={data.status === "CODING" ? "green" : "orange"}>......</span> <a rel="noreferrer" href={data.url} target="_blank">{data.name}</a> ({data.site})</td>
+                                <td>
+
+                                    {data.status === "CODING" && <span title="contest running" className="green">......</span>}
+
+                                    {data.status !== "CODING" && <a target="_blank" href={"https://calendar.google.com/event?action=TEMPLATE&dates=" + validateDateForUrl(data.start_time) + "/" + validateDateForUrl(data.end_time) + "&text=" + data.name + "&location=" + data.url + "https://www.codechef.com/CDMT2021?itm_campaign=contest_listing"}><i class="far fa-calendar-plus right-10"></i></a>}
+
+                                    <a rel="noreferrer" href={data.url} target="_blank">{data.name}</a> ({data.site})
+
+                                </td>
 
                                 <td>{data.start_time.substr(0, 10)} at {data.start_time.substr(11, 5)}</td>
 
@@ -32,7 +55,7 @@ function Table(props) {
                     })
                 }
             </tbody>
-        </table>
+        </table >
     );
 }
 
