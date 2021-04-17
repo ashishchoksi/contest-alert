@@ -72,10 +72,9 @@ class AllContest extends Component {
 
     todayContestHandler = (e) => {
         this.setState({ searchText: "" });
-        let curText = e.target.innerText;
+        let curText = e.target.innerText.toString();
         if (curText === this.state.activeOption) return;
-        this.setState({ activeOption: curText });
-        let cur_data = [...this.state.get_data[this.state.activeOption]];
+        let cur_data = [...this.state.get_data["All"]];
         let newData = [];
         let cur_date = this.getFullDate();
 
