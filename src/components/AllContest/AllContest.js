@@ -12,10 +12,13 @@ class AllContest extends Component {
         all_contest: [],
         contest: [],
         activeOption: "All",
-        get_data: {}
+        get_data: {},
+        offLoad: false,
+        searchText: ""
     };
 
     componentDidMount() {
+        this.setState({ offLoad: false });
         axios.get(`https://www.kontests.net/api/v1/all`)
             .then(res => {
                 this.setState({ all_contest: res.data, contest: res.data }, () => {
@@ -33,11 +36,13 @@ class AllContest extends Component {
                         }
                     }
                     this.setState({ get_data: cur_data });
+                    this.setState({ offLoad: true });
                 });
             })
     }
 
     onOptionClickHandler = (e) => {
+        this.setState({ searchText: "" });
         let curText = e.target.innerText;
         if (curText === this.state.activeOption) return;
         this.setState({ activeOption: curText });
@@ -45,23 +50,48 @@ class AllContest extends Component {
         this.setState({ all_contest: filteredData });
     }
 
+    filterData = (text) => {
+        let cur_data = [...this.state.get_data[this.state.activeOption]];
+        let newData = [];
+        if (text === undefined || text === "") {
+            this.setState({ all_contest: cur_data });
+            return;
+        } else {
+            newData = cur_data.filter(data => (data.name.toLowerCase().indexOf(text) !== -1) || (data.site.toLowerCase().indexOf(text) !== -1));
+        }
+        this.setState({ all_contest: newData });
+    }
+
+    onSearch = (e) => {
+        // after searchText assigned call function
+        this.setState({ searchText: e.target.value },
+            () => {
+                this.filterData(e.target.value.toLowerCase().trim());
+            });
+    }
+
     render() {
 
-        let index = 0;
         let table = <Spinner />;
         let TableOption = null;
-        if (this.state.all_contest.length > 0) {
+        if (this.state.offLoad || this.state.all_contest.length > 0) {
             table = <Table all_contest={this.state.all_contest} />;
 
             TableOption = (
-                <div className="option-holder">
-                    <div onClick={this.onOptionClickHandler} className={(this.state.activeOption === "All" ? "option active" : "option")}> All </div>
+                <div className="option-holder container-fluid">
+                    <div className="row">
+                        <div onClick={this.onOptionClickHandler} className={(this.state.activeOption === "All" ? "option active" : "option")}> All </div>
 
-                    <div onClick={this.onOptionClickHandler} className={(this.state.activeOption === "CodeChef" ? "option active" : "option")}> CodeChef </div>
+                        <div onClick={this.onOptionClickHandler} className={(this.state.activeOption === "CodeChef" ? "option active" : "option")}> CodeChef </div>
 
-                    <div onClick={this.onOptionClickHandler} className={(this.state.activeOption === "CodeForces" ? "option active" : "option")}> CodeForces </div>
+                        <div onClick={this.onOptionClickHandler} className={(this.state.activeOption === "CodeForces" ? "option active" : "option")}> CodeForces </div>
 
-                    <div onClick={this.onOptionClickHandler} className={(this.state.activeOption === "Kick Start" ? "option active" : "option")}> Kick Start </div>
+                        <div onClick={this.onOptionClickHandler} className={(this.state.activeOption === "Kick Start" ? "option active" : "option")}> Kick Start </div>
+
+                        <input value={this.state.searchText} onChange={this.onSearch} placeholder="Search contest" className="col-lg-3 col-md-4 col-sm-12 form-control" type="text" />
+
+                    </div>
+
                 </div>
             )
         }
