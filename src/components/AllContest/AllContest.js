@@ -50,6 +50,48 @@ class AllContest extends Component {
         this.setState({ all_contest: filteredData });
     }
 
+    getFullDate = () => {
+        let d = new Date();
+        let cur_date = d.getUTCFullYear() + "-";
+
+        // add month
+        let month = d.getUTCMonth() + 1;
+        if (month.toString().length === 1)
+            cur_date += "0" + month + "-";
+        else
+            cur_date += month + "-";
+
+        // add day
+        if (d.getUTCDate().toString().length === 1)
+            cur_date += "0" + d.getUTCDate();
+        else
+            cur_date += d.getUTCDate();
+
+        return cur_date;
+    }
+
+    todayContestHandler = (e) => {
+        this.setState({ searchText: "" });
+        let curText = e.target.innerText;
+        if (curText === this.state.activeOption) return;
+        this.setState({ activeOption: curText });
+        let cur_data = [...this.state.get_data[this.state.activeOption]];
+        let newData = [];
+        let cur_date = this.getFullDate();
+
+        newData = cur_data.filter(data => {
+            let start_date = data.start_time.substr(0, 10);
+            return cur_date === start_date;
+        });
+
+        let cur_all_contest = { ...this.state.get_data };
+        cur_all_contest[curText] = [...newData];
+
+        this.setState({ activeOption: curText });
+        this.setState({ get_data: cur_all_contest });
+        this.setState({ all_contest: newData });
+    }
+
     filterData = (text) => {
         let cur_data = [...this.state.get_data[this.state.activeOption]];
         let newData = [];
@@ -74,13 +116,15 @@ class AllContest extends Component {
 
         let table = <Spinner />;
         let TableOption = null;
-        if (this.state.offLoad || this.state.all_contest.length > 0) {
+        if (this.state.offLoad) {
             table = <Table all_contest={this.state.all_contest} />;
 
             TableOption = (
                 <div className="option-holder container-fluid">
                     <div className="row">
                         <div onClick={this.onOptionClickHandler} className={(this.state.activeOption === "All" ? "option active" : "option")}> All </div>
+
+                        <div onClick={this.todayContestHandler} className={(this.state.activeOption === "Today" ? "option active" : "option")}> Today </div>
 
                         <div onClick={this.onOptionClickHandler} className={(this.state.activeOption === "CodeChef" ? "option active" : "option")}> CodeChef </div>
 

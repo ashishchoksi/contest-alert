@@ -57,7 +57,7 @@ function Table(props) {
                                     <td> {end} </td>
 
                                     <td>
-                                        <a rel="noreferrer" href={"https://wa.me/?text=contest " + data.name + " from" + start + " to" + end + " \nLink = " + data.url} target="_blank">
+                                        <a rel="noreferrer" href={"https://wa.me/?text=contest " + data.name + " from " + start + " to " + end + " Link = " + data.url} target="_blank">
 
                                             <Whatsappsvg />
 
@@ -73,7 +73,7 @@ function Table(props) {
                 </tbody>
 
             </table >
-            { (props.all_contest.length == 0) && <div className="text-center lead">No Contest Found!</div>}
+            { (props.all_contest.length === 0) && <div className="text-center lead">No Contest Found!</div>}
         </div>
     );
 }
